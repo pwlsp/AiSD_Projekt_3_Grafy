@@ -9,7 +9,7 @@
 
 void actions(std::string type){
     std::cout << "Actions\n";
-    std::string message = "Help\t\tShow this mesage\n"; //dokonczyc
+    std::string message = "Help\t\tShow this message\n"; //dokonczyc
     std::string action, sort_method;
     while(std::cin){
         std::cin >> action;
@@ -22,9 +22,11 @@ void actions(std::string type){
         else if(action == "Sort"){
             std::cin >> sort_method;
             std::cout << sort_method << "\n";
-            if(sort_method == "Kahn") Kahn(type);
-            else if(sort_method == "Tarjan") Tarjan(type);
-            else continue;
+            //if(acyclic() && non_direct()) (??)) //sprawdzac{
+                if(sort_method == "Kahn") Kahn(type);
+                else if(sort_method == "Tarjan") Tarjan(type);
+                else {std::cout << "The graph is not acyclic or/and directed\n"; continue;}
+            //}
         }
         else if(action == "Exit") break;
         else std::cout << "\nWrong command\n";

@@ -22,4 +22,5 @@ void user_provided(std::string type){
         std::cout << "Wrong type of representation.\n";
         std::exit(0);
     }
+    
 }

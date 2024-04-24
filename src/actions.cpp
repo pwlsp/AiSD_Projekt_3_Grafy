@@ -22,11 +22,13 @@ void actions(std::string type){
         else if(action == "Sort"){
             std::cin >> sort_method;
             std::cout << sort_method << "\n";
-            //if(acyclic() && non_direct()) (??)) //sprawdzac{
-                if(sort_method == "Kahn") Kahn(type);
-                else if(sort_method == "Tarjan") Tarjan(type);
-                else {std::cout << "The graph is not acyclic or/and directed\n"; continue;}
-            //}
+            //z założenia są acykliczne i skierowane
+            if(sort_method == "Kahn") Kahn(type);
+            else if(sort_method == "Tarjan") Tarjan(type);
+            else{
+                std::cout << "Unknown topological sorting method\n"; 
+                continue;
+            }
         }
         else if(action == "Exit") break;
         else std::cout << "\nWrong command\n";

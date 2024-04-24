@@ -15,13 +15,23 @@ int main(int argc, char *argv[]){
 
     std::string create = std::string(argv[1]);
 
-    if(create != "--generate" || create != "--user-provided"){
+    if(create != "--generate" && create != "--user-provided"){
         std::cout << "Wrong arguments\n";
         return 1;
     }
 
     std::string type;
     std::cin >> type;
+    std::cout << "type>" << type << "\n";
+
+    if(type == "matrix"){
+
+    }
+    else if(type == "list"){
+
+    }
+    else if(type == "table"){
+    }
    
     if(create == "generate") generate(type);
     if(create == "user-provided") user_provided(type);

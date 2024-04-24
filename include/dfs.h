@@ -1,6 +1,6 @@
 
-void dfs_matrix();
+void dfs_matrix(int **matrix, int vertices);
 
-void dfs_table();
+void dfs_list(int vertices);
 
-void dfs_list();
+void dfs_table(int vertices);

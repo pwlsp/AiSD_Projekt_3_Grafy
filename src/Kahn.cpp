@@ -1,6 +1,6 @@
 #include <iostream>
 
-void Kahn_matrix(){
+void Kahn_matrix(int **matrix, int vertices){
 
 }
 

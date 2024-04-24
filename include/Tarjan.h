@@ -1,6 +1,6 @@
 
-void Tarjan_matrix();
+void Tarjan_matrix(int **matrix, int vertices);
 
-void Tarjan_table();
+void Tarjan_list(int vertices);
 
-void Tarjan_list();
+void Tarjan_table(int vertices);

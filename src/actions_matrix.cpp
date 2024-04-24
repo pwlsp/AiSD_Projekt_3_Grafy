@@ -7,7 +7,7 @@
 #include "../include/Tarjan.h"
 #include "../include/Kahn.h"
 
-void actions_matrix(){
+void actions_matrix(int **matrix, int vertices){
     std::cout << "Actions\n";
     std::string message = "Help\t\tShow this message\n"; //dokonczyc
     std::string action, sort_method;

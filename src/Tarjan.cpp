@@ -1,6 +1,6 @@
 #include <iostream>
 
-void Tarjan_matrix(){
+void Tarjan_matrix(int **matrix, int vertices){
 
 }
 

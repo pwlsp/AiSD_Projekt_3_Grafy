@@ -1,2 +1,2 @@
 
-void actions_list();
+void actions_list(int vertices);

@@ -1,2 +1,2 @@
 
-void actions_table();
+void actions_table(int vertices);

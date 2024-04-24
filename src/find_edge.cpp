@@ -1,6 +1,6 @@
 #include <iostream>
 
-void find_edge_matrix(int from, int to){
+void find_edge_matrix(int **matrix, int vertices, int from, int to){
 
 }
 

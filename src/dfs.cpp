@@ -1,6 +1,6 @@
 #include <iostream>
 
-void dfs_matrix(){
+void dfs_matrix(int **matrix, int vertices){
 
 }
 

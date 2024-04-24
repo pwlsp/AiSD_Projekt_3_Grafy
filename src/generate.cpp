@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 
-void generate_matrix(){
+void generate_matrix(int **matrix, int vertices){
 
 }
 

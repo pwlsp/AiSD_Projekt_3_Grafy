@@ -1,2 +1,6 @@
 
-void Kahn(std::string type);
+void Kahn_matrix();
+
+void Kahn_table();
+
+void Kahn_list();

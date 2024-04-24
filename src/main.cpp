@@ -4,7 +4,11 @@
 
 #include "../include/generate.h"
 #include "../include/user_provided.h"
-#include "../include/actions.h"
+#include "../include/actions_matrix.h"
+#include "../include/actions_list.h"
+#include "../include/actions_table.h"
+#include "../include/generate.h"
+#include "../include/user_provided.h"
 
 int main(int argc, char *argv[]){
 
@@ -25,17 +29,23 @@ int main(int argc, char *argv[]){
     std::cout << "type>" << type << "\n";
 
     if(type == "matrix"){
-
+        if(create == "generate") generate_matrix();
+        if(create == "user-provided") user_provided_matrix(); 
+        actions_matrix();         
     }
     else if(type == "list"){
-
+        if(create == "generate") generate_list();
+        if(create == "user-provided") user_provided_list();
+        actions_list();
     }
     else if(type == "table"){
+        if(create == "generate") generate_table();
+        if(create == "user-provided") user_provided_table();
+        actions_table();
     }
-   
-    if(create == "generate") generate(type);
-    if(create == "user-provided") user_provided(type);
-    
-    actions(type);
+    else{
+        std::cout << "Unknown graph representation\n";
+        return 0;
+    }
     return 0;  
 }

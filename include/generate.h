@@ -1,2 +1,6 @@
 
-void generate(std::string type);
+void generate_matrix();
+
+void generate_list();
+
+void generate_table();

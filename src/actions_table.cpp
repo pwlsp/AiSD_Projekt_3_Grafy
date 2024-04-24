@@ -7,7 +7,7 @@
 #include "../include/Tarjan.h"
 #include "../include/Kahn.h"
 
-void actions(std::string type){
+void actions_table(){
     std::cout << "Actions\n";
     std::string message = "Help\t\tShow this message\n"; //dokonczyc
     std::string action, sort_method;
@@ -15,16 +15,23 @@ void actions(std::string type){
         std::cin >> action;
         std::cout << "action> " << action << "\n";
         if(action == "Help") std::cout << message;
-        else if(action == "Print") print_graph(type);
-        else if(action == "Breath-first search" or action == "BFS") bfs(type);
-        else if(action == "Find") find_edge(type);
-        else if(action == "Deep-first search" or action == "DFS") dfs(type);
+        else if(action == "Print") print_graph_table();
+        else if(action == "Breath-first search" or action == "BFS") bfs_table();
+        else if(action == "Find") {
+            int from, to;
+            std::cin >> from;
+            std::cout << "from> " << from << "\n";
+            std::cin >> to;
+            std::cout << "to> " << to << "\n";
+            find_edge_table(from, to);
+        }
+        else if(action == "Deep-first search" or action == "DFS") dfs_table();
         else if(action == "Sort"){
             std::cin >> sort_method;
             std::cout << sort_method << "\n";
             //z założenia są acykliczne i skierowane
-            if(sort_method == "Kahn") Kahn(type);
-            else if(sort_method == "Tarjan") Tarjan(type);
+            if(sort_method == "Kahn") Kahn_table();
+            else if(sort_method == "Tarjan") Tarjan_table();
             else{
                 std::cout << "Unknown topological sorting method\n"; 
                 continue;

@@ -23,7 +23,8 @@ void actions_matrix(int **matrix, int vertices){
             std::cout << "from> " << from << "\n";
             std::cin >> to;
             std::cout << "to> " << to << "\n";
-            find_edge_matrix(matrix, vertices, from, to);
+            if(matrix[from][to]) std::cout << "The edge (" << from << "," << to << ") exists.\n";
+            else std::cout << "The edge (" << from << "," << to << ") doesn't exist.\n";
         }
         else if(action == "Deep-first search" or action == "DFS") dfs_matrix(matrix, vertices);
         else if(action == "Sort"){

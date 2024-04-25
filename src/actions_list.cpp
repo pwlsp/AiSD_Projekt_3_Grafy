@@ -25,7 +25,9 @@ void actions_list(graph *L, int vertices){
             std::cout << "from> " << from << "\n";
             std::cin >> to;
             std::cout << "to> " << to << "\n";
-            find_edge_list(L, vertices, from, to);
+            if(find_edge_list(L, vertices, from, to)) std::cout << "The edge (" << from << "," << to << ") exists.\n";
+            else std::cout << "The edge (" << from << "," << to << ") doesn't exist.\n";
+
         }
         else if(action == "Deep-first search" or action == "DFS") dfs_list(L, vertices);
         else if(action == "Sort"){

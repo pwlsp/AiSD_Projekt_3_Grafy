@@ -3,12 +3,9 @@
 
 #include "../include/struct_graph.h"
 
-void find_edge_matrix(int **matrix, int vertices, int from, int to){
-    if(matrix[from][to]) std::cout << "The edge (" << from << "," << to << ") exists.\n";
-    else std::cout << "The edge (" << from << "," << to << ") doesn't exist.\n";
-}
-
-void find_edge_list(graph *L, int vertices, int from, int to){
+bool find_edge_list(graph *L, int vertices, int from, int to){
+    for (std::list<int>::iterator it = L[from].next.begin(); it != L[from].next.end(); it++) if(*it == to) return true;
+    return false;
 
 }
 

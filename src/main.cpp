@@ -28,7 +28,7 @@ int main(int argc, char *argv[]){
 
     std::string type;
     std::cin >> type;
-    std::cout << "type>" << type << "\n";
+    std::cout << "type> " << type << "\n";
 
     int vertices;
     std::cin >> vertices;

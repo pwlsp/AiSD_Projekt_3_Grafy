@@ -1,7 +1,8 @@
 #include <iostream>
 #include <string>
 #include <list>
-#define n 10
+#include <sstream>
+
 #include "../include/struct_graph.h"
 
 void user_provided_matrix(int **matrix, int vertices){
@@ -12,9 +13,19 @@ void user_provided_matrix(int **matrix, int vertices){
 }
 
 void user_provided_list(graph *L, int vertices){
-    for(int i=0;i<vertices;i++){
-        int to=0;
-        while(std::cin >> to) L[i].next.push_back(to);
+    std::string line; 
+    int to;
+    std::cin.ignore();
+    for(int i = 0; i < vertices; i++){
+        getline(std::cin, line);
+        std::stringstream is(line);
+        if(line == ""){
+            L[i].next.push_back(-1); // jakoś to rozwiązać, żeby było puste
+        }
+        else{
+            while(is >> to) L[i].next.push_back(to);
+        }
+        
     }
 
 }

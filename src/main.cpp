@@ -21,7 +21,7 @@ int main(int argc, char *argv[]){
 
     if(create != "--generate" && create != "--user-provided"){
         std::cout << "Wrong arguments\n";
-        return 1;
+        return 0;
     }
 
     std::string type;
@@ -35,18 +35,18 @@ int main(int argc, char *argv[]){
     if(type == "matrix"){
         int **matrix; matrix = new int *[vertices];
         for(int i = 0; i < vertices; i++) matrix[i] = new int[vertices];
-        if(create == "generate") generate_matrix(matrix, vertices);
-        if(create == "user-provided") user_provided_matrix(matrix, vertices); 
+        if(create == "--generate") generate_matrix(matrix, vertices);
+        if(create == "--user-provided") user_provided_matrix(matrix, vertices); 
         actions_matrix(matrix, vertices);         
     }
     else if(type == "list"){
-        if(create == "generate") generate_list(vertices);
-        if(create == "user-provided") user_provided_list(vertices);
+        if(create == "--generate") generate_list(vertices);
+        if(create == "--user-provided") user_provided_list(vertices);
         actions_list(vertices);
     }
     else if(type == "table"){
-        if(create == "generate") generate_table(vertices);
-        if(create == "user-provided") user_provided_table(vertices);
+        if(create == "--generate") generate_table(vertices);
+        if(create == "--user-provided") user_provided_table(vertices);
         actions_table(vertices);
     }
     else{

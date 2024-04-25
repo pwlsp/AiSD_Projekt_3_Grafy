@@ -9,29 +9,29 @@
 
 void actions_matrix(int **matrix, int vertices){
     std::cout << "Actions\n";
-    std::string message = "Help\t\tShow this message\n"; //dokonczyc
+   std::string message = "Help\t\tShow this message\nPrint\t\tPrint the graph in given representation\nBreath-first search or BFS\t\tPRzeszukanie grafu metodą Breadth-first search\nDeep-first search or DFS\t\tPRzeszukanie grafu metodą Deep-first search\nFind\t\tReturn true if the egde between vertices exists, otherwise return false\nKahn\t\tSort topologically using Kahn algorithm\nTarjan\t\tSort topologically using Tarjan algorithm";
     std::string action, sort_method;
     while(std::cin){
         std::cin >> action;
         std::cout << "action> " << action << "\n";
         if(action == "Help") std::cout << message;
-        else if(action == "Print") print_graph_matrix();
-        else if(action == "Breath-first search" or action == "BFS") bfs_matrix();
+        else if(action == "Print") print_graph_matrix(matrix, vertices);
+        else if(action == "Breath-first search" or action == "BFS") bfs_matrix(matrix, vertices);
         else if(action == "Find") {
             int from, to;
             std::cin >> from;
             std::cout << "from> " << from << "\n";
             std::cin >> to;
             std::cout << "to> " << to << "\n";
-            find_edge_matrix(from, to);
+            find_edge_matrix(matrix, vertices, from, to);
         }
-        else if(action == "Deep-first search" or action == "DFS") dfs_matrix();
+        else if(action == "Deep-first search" or action == "DFS") dfs_matrix(matrix, vertices);
         else if(action == "Sort"){
             std::cin >> sort_method;
             std::cout << sort_method << "\n";
             //z założenia są acykliczne i skierowane
-            if(sort_method == "Kahn") Kahn_matrix();
-            else if(sort_method == "Tarjan") Tarjan_matrix();
+            if(sort_method == "Kahn") Kahn_matrix(matrix, vertices);
+            else if(sort_method == "Tarjan") Tarjan_matrix(matrix, vertices);
             else{
                 std::cout << "Unknown topological sorting method\n"; 
                 continue;

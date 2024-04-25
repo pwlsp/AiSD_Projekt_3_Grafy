@@ -1,2 +1,5 @@
+#include <list>
 
-void actions_list(int vertices);
+#include "../include/struct_graph.h"
+
+void actions_list(graph *L, int vertices);

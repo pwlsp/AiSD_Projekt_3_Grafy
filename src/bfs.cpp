@@ -1,5 +1,8 @@
 #include <iostream>
 #include <queue>
+#include <list>
+
+#include "../include/struct_graph.h"
 
 void bfs_go_matrix(int **matrix, int V, int N, bool *visited){
     std::queue <int> next;
@@ -39,7 +42,7 @@ void bfs_matrix(int **matrix, int vertices){
     std::cout << "\n";
 }
 
-void bfs_list(int vertices){
+void bfs_list(graph *L, int vertices){
     bool *visited; visited = new bool[vertices];
     for(int i = 0; i < vertices; i++){
         for(int j = 0; j < vertices; j++) visited[i] = 0;

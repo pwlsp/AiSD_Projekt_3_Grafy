@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <list>
 
 #include "../include/generate.h"
 #include "../include/user_provided.h"
@@ -9,6 +10,7 @@
 #include "../include/actions_table.h"
 #include "../include/generate.h"
 #include "../include/user_provided.h"
+#include "../include/struct_graph.h"
 
 int main(int argc, char *argv[]){
 
@@ -40,9 +42,10 @@ int main(int argc, char *argv[]){
         actions_matrix(matrix, vertices);         
     }
     else if(type == "list"){
-        if(create == "--generate") generate_list(vertices);
-        if(create == "--user-provided") user_provided_list(vertices);
-        actions_list(vertices);
+        graph *L; L = new graph[vertices];
+        if(create == "--generate") generate_list(L, vertices);
+        if(create == "--user-provided") user_provided_list(L, vertices);
+        actions_list(L, vertices);
     }
     else if(type == "table"){
         if(create == "--generate") generate_table(vertices);

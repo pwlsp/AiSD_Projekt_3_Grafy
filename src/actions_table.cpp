@@ -9,7 +9,7 @@
 
 void actions_table(int vertices){
     std::cout << "Actions\n";
-    std::string message = "Help\t\tShow this message\nPrint\t\tPrint the graph in given representation\nBreath-first search or BFS\t\tPRzeszukanie grafu metodą Breadth-first search\nDeep-first search or DFS\t\tPRzeszukanie grafu metodą Deep-first search\nFind\t\tReturn true if the egde between vertices exists, otherwise return false\nKahn\t\tSort topologically using Kahn algorithm\nTarjan\t\tSort topologically using Tarjan algorithm";
+    std::string message = "Help\t\tShow this message\nPrint\t\tPrint the graph in given representation\nBreath-first search or BFS\t\tPRzeszukanie grafu metodą Breadth-first search\nDeep-first search or DFS\t\tPRzeszukanie grafu metodą Deep-first search\nFind\t\tReturn true if the egde between vertices exists, otherwise return false\nSort\t\tSort topologically using\n\t -Kahn algorithm (Kahn)\n\t-Tarjan algorithm (Tarjan)";
     std::string action, sort_method;
     while(std::cin){
         std::cin >> action;

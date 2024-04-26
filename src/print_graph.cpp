@@ -18,7 +18,7 @@ void print_graph_matrix(int **matrix, int vertices){
 void print_graph_list(graph *L, int vertices){
     for(int i = 0; i < vertices; i++){
         std::cout << i << ": ";
-        for (std::list<int>::iterator it = L[i].next.begin(); it != L[i].next.end(); it++) std::cout << *it << " ";
+        for(std::list<int>::iterator it = L[i].next.begin(); it != L[i].next.end(); it++) std::cout << *it << " ";
         std::cout << "\n";
     }
 }

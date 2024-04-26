@@ -2,6 +2,8 @@
 #include <string>
 #include <list>
 #include <sstream>
+#include <ios>
+#include <limits>
 
 #include "../include/struct_graph.h"
 
@@ -15,14 +17,11 @@ void user_provided_matrix(int **matrix, int vertices){
 void user_provided_list(graph *L, int vertices){
     std::string line; 
     int to;
-    std::cin.ignore();
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     for(int i = 0; i < vertices; i++){
         getline(std::cin, line);
         std::stringstream is(line);
-        if(line == ""){
-            L[i].next.push_back(-1); // jakoś to rozwiązać, żeby było puste
-        }
-        else{
+        if(line != ""){
             while(is >> to) L[i].next.push_back(to);
         }
         

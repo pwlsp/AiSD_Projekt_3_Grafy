@@ -16,7 +16,6 @@ void actions_matrix(int **matrix, int vertices){
         std::cout << "action> " << action << "\n";
         if(action == "Help") std::cout << message;
         else if(action == "Print") print_graph_matrix(matrix, vertices);
-        else if(action == "Breath-first search" or action == "BFS") bfs_matrix(matrix, vertices);
         else if(action == "Find") {
             int from, to;
             std::cin >> from;
@@ -26,19 +25,35 @@ void actions_matrix(int **matrix, int vertices){
             if(matrix[from][to]) std::cout << "The edge (" << from << "," << to << ") exists.\n";
             else std::cout << "The edge (" << from << "," << to << ") doesn't exist.\n";
         }
-        else if(action == "Deep-first search" or action == "DFS") dfs_matrix(matrix, vertices);
+        else if(action == "Breath-first search" or action == "BFS"){
+            bfs_matrix(matrix, vertices);
+            std::cout << "Breath-first search algorithm executed successfully.\n";
+        }
+        else if(action == "Deep-first search" or action == "DFS"){
+            dfs_matrix(matrix, vertices);
+            std::cout << "Deep-first search algorithm executed successfully.\n";
+        }
         else if(action == "Sort"){
             std::cin >> sort_method;
             std::cout << sort_method << "\n";
             //z założenia są acykliczne i skierowane
-            if(sort_method == "Kahn") Kahn_matrix(matrix, vertices);
-            else if(sort_method == "Tarjan") Tarjan_matrix(matrix, vertices);
+            if(sort_method == "Kahn"){
+                Kahn_matrix(matrix, vertices);
+                std::cout << "The graph sorted successfully (Kahn algorithm).\n";
+            }
+            else if(sort_method == "Tarjan"){
+                Tarjan_matrix(matrix, vertices);
+                std::cout << "The graph sorted successfully (Tarjan algorithm).\n";
+            }
             else{
                 std::cout << "Unknown topological sorting method\n"; 
                 continue;
             }
         }
-        else if(action == "Exit") break;
+        else if(action == "Exit"){
+            std::cout << "Exiting the program...\n";
+            break;
+        }
         else std::cout << "\nWrong command\n";
         /*w*/
 

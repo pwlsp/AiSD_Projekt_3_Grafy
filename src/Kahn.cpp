@@ -10,7 +10,6 @@ void Kahn_matrix(int **matrix, int vertices){
         ins[i] = 0;
         visited[i] = 0;
     }
-
     int ins_count = 0;
     int matrix_copy[vertices][vertices];
     for(int i = 0; i < vertices; i++){
@@ -22,9 +21,6 @@ void Kahn_matrix(int **matrix, int vertices){
             }
         }
     }
-
-    // for(int i = 0; i < vertices; i++) std::cout << i << " " << ins[i] << "\n";
-    // std::cout << ins_count << "\n";
 
     int a;
     while(ins_count > 0){
@@ -43,8 +39,7 @@ void Kahn_matrix(int **matrix, int vertices){
             }
         }
         visited[a] = 1;
-    }
-     //znalezienie z zerowym wejsciem
+    }//znalezienie z zerowym wejściem
     for(int i = 0; i < vertices; i++){
         if(visited[i] == 0) std::cout << i << " ";
     }
@@ -57,7 +52,6 @@ void Kahn_list(graph *L, int vertices){
         ins[i] = 0;
         visited[i] = 0;
     }
-
     //kopia listy
     int ins_count = 0;
     graph *L_copy; L_copy = new graph[vertices];
@@ -68,9 +62,6 @@ void Kahn_list(graph *L, int vertices){
             ins_count++;
         }
     }
-
-    for(int i = 0; i < vertices; i++) std::cout << i << " " << ins[i] << "\n";
-    std::cout << ins_count << "\n";
 
     int a, j;
     while(ins_count > 0){
@@ -97,5 +88,38 @@ void Kahn_list(graph *L, int vertices){
 }
 
 void Kahn_table(edgeList *eList, int edges, int vertices){
+    int ins[vertices], visited[vertices];
+    for(int i = 0; i < vertices; i++){
+        ins[i] = 0;
+        visited[i] = 0;
+    }
+    edgeList *list_copy; list_copy = new edgeList[edges];
+    for(int i = 0; i < edges; i++){
+        list_copy[i] = eList[i];
+        ins[eList[i].in]++;
+    }
+
+    int a, ins_count = edges;
+    while(ins_count > 0){
+        for(int i = 0; i < vertices; i++){
+            if(!visited[i] && ins[i] == 0){
+                a = i;
+                break;
+            }
+        }
+        std::cout << a << " ";
+        for(int i = 0; i < edges; i ++){
+            if(list_copy[i].out == a && list_copy[i].in != -1){
+                ins[list_copy[i].in]--;
+                list_copy[i].in = -1; //dopytac sie czy wierzcholki maja byc od zera i czy moga byc ujemne
+                ins_count--;
+            }
+        }
+        visited[a] = 1;
+    }
+    for(int i = 0; i < vertices; i++){
+        if(visited[i] == 0) std::cout << i << " ";
+    }
     std::cout << "\n";
+    
 }

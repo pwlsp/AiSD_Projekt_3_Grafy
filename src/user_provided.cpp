@@ -24,10 +24,8 @@ void user_provided_list(graph *L, int vertices){
         std::stringstream is(line);
         if(line != ""){
             while(is >> to) L[i].next.push_back(to);
-        }
-        
+        }   
     }
-
 }
 
 void user_provided_table(edgeList *eList, int edges){

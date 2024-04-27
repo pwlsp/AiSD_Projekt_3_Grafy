@@ -25,7 +25,8 @@ void print_graph_list(graph *L, int vertices){
 }
 
 void print_graph_table(edgeList *eList, int edges){
+    std::cout << "out\tin\n";
     for(int i = 0; i < edges; i++){
-        std::cout << eList[i].out << " " << eList[i].in << "\n";
+        std::cout << eList[i].out << "\t" << eList[i].in << "\n";
     }
 }

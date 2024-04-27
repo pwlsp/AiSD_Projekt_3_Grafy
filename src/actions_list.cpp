@@ -15,11 +15,13 @@ void actions_list(graph *L, int vertices){
     std::string action, sort_method;
     while(std::cin){
         std::cin >> action;
-        std::cout << "action> " << action << "\n";
+        if(action != "") std::cout << "action> " << action << "\n";
         if(action == "Help") std::cout << message;
-        else if(action == "Print") print_graph_list(L, vertices);
-        else if(action == "Breath-first search" or action == "BFS") bfs_list(L, vertices);
-        else if(action == "Find") {
+        else if(action == "Print"){
+            print_graph_list(L, vertices);
+            std::cout << "The graph has been printed successfully.\n";
+        }
+        else if(action == "Find"){
             int from, to;
             std::cin >> from;
             std::cout << "from> " << from << "\n";
@@ -29,23 +31,41 @@ void actions_list(graph *L, int vertices){
             else std::cout << "The edge (" << from << "," << to << ") doesn't exist.\n";
 
         }
-        else if(action == "Deep-first search" or action == "DFS") dfs_list(L, vertices);
+        else if(action == "Breath-first search" or action == "BFS"){
+            bfs_list(L, vertices);
+            std::cout << "Breath-first search algorithm executed successfully.\n";
+        }
+        else if(action == "Deep-first search" or action == "DFS"){
+            dfs_list(L, vertices);
+            std::cout << "Deep-first search algorithm executed successfully.\n";
+        }
         else if(action == "Sort"){
             std::cin >> sort_method;
             std::cout << sort_method << "\n";
             //z założenia są acykliczne i skierowane
-            if(sort_method == "Kahn") Kahn_list(L, vertices);
-            else if(sort_method == "Tarjan") Tarjan_list(L, vertices);
+            if(sort_method == "Kahn"){
+                Kahn_list(L, vertices);
+                std::cout << "The graph has been sorted successfully (Kahn algorithm).\n";
+            }
+            else if(sort_method == "Tarjan"){
+                Tarjan_list(L, vertices);
+                std::cout << "The graph has been sorted successfully (Tarjan algorithm).\n";
+            }
             else{
                 std::cout << "Unknown topological sorting method\n"; 
                 continue;
             }
         }
-        else if(action == "Exit") break;
+        else if(action == "Exit"){
+            std::cout << "Exiting the program...\n";
+            break;
+        }
+        else if(action == ""){
+            std::cout << "End of file.\nExiting the program...\n";
+            break;
+        }
         else std::cout << "\nWrong command\n";
         /*w*/
-
-
+        action = "";
     }
-
 }

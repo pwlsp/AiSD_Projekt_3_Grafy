@@ -13,10 +13,13 @@ void actions_matrix(int **matrix, int vertices){
     std::string action, sort_method;
     while(std::cin){
         std::cin >> action;
-        std::cout << "action> " << action << "\n";
+        if(action != "") std::cout << "action> " << action << "\n";
         if(action == "Help") std::cout << message;
-        else if(action == "Print") print_graph_matrix(matrix, vertices);
-        else if(action == "Find") {
+        else if(action == "Print"){
+            print_graph_matrix(matrix, vertices);
+            std::cout << "The graph ahs been printed successfully.\n";
+        }
+        else if(action == "Find"){
             int from, to;
             std::cin >> from;
             std::cout << "from> " << from << "\n";
@@ -39,11 +42,11 @@ void actions_matrix(int **matrix, int vertices){
             //z założenia są acykliczne i skierowane
             if(sort_method == "Kahn"){
                 Kahn_matrix(matrix, vertices);
-                std::cout << "The graph sorted successfully (Kahn algorithm).\n";
+                std::cout << "The graph has been sorted successfully (Kahn algorithm).\n";
             }
             else if(sort_method == "Tarjan"){
                 Tarjan_matrix(matrix, vertices);
-                std::cout << "The graph sorted successfully (Tarjan algorithm).\n";
+                std::cout << "The graph has been sorted successfully (Tarjan algorithm).\n";
             }
             else{
                 std::cout << "Unknown topological sorting method\n"; 
@@ -52,6 +55,10 @@ void actions_matrix(int **matrix, int vertices){
         }
         else if(action == "Exit"){
             std::cout << "Exiting the program...\n";
+            break;
+        }
+        else if(action == ""){
+            std::cout << "End of file.\nExiting the program...\n";
             break;
         }
         else std::cout << "\nWrong command\n";

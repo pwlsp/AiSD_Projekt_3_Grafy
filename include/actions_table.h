@@ -1,2 +1,2 @@
 
-void actions_table(int vertices);
+void actions_table(edgeList *eList, int edges, int vertices);

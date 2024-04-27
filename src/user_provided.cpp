@@ -6,6 +6,7 @@
 #include <limits>
 
 #include "../include/struct_graph.h"
+#include "../include/struct_edgeList.h"
 
 void user_provided_matrix(int **matrix, int vertices){
     //std::cout << "wczytywanie\n";
@@ -29,6 +30,8 @@ void user_provided_list(graph *L, int vertices){
 
 }
 
-void user_provided_table(int vertices){
-
+void user_provided_table(edgeList *eList, int edges){
+    for(int i = 0; i < edges; i++){
+        std::cin >> eList[i].out >> eList[i].in;
+    }
 }

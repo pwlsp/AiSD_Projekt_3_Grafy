@@ -30,14 +30,16 @@ void dfs_go_list(graph *L, int V, int N, bool *visited){
         }
 }
 
-void dfs_go_table(int **matrix, int V, int N, bool *visited){
+void dfs_go_table(edgeList *eList, int V, int E, bool *visited){
     std::cout << V << " ";
 
     visited[V] = true;
 
-    for (int i = 0; i < N; i++) {
-        if (matrix[V][i] == 1 && (!visited[i])) {
-            dfs_go_matrix(matrix, i, N, visited);
+    for (int i = 0; i < E; i++) {
+        if(eList[i].out == V && !visited[eList[i].in])
+        {
+            visited[eList[i].in] = 1;
+            dfs_go_table(eList, eList[i].in, E, visited);
         }
     }
 }
@@ -61,5 +63,10 @@ void dfs_list(graph *L, int vertices){
 }
 
 void dfs_table(edgeList *eList, int edges, int vertices){
-    
+    bool *visited; visited = new bool[vertices];
+    for(int i = 0; i < vertices; i++) visited[i] = 0;
+    for(int i = 0; i < vertices; i++){
+        if(!visited[i]) dfs_go_table(eList, i, edges, visited);
+    }
+    std::cout << "\n";
 }

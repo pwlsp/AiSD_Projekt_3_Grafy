@@ -10,7 +10,7 @@
 
 void actions_table(edgeList *eList, int edges, int vertices){
     std::cout << "Actions\n";
-    std::string message = "Help\t\tShow this message\nPrint\t\tPrint the graph in given representation\nBreath-first search or BFS\t\tPRzeszukanie grafu metodą Breadth-first search\nDeep-first search or DFS\t\tPRzeszukanie grafu metodą Deep-first search\nFind\t\tReturn true if the egde between vertices exists, otherwise return false\nSort\t\tSort topologically using\n\t -Kahn algorithm (Kahn)\n\t-Tarjan algorithm (Tarjan)";
+    std::string message = "Help\t\tShow this message\nPrint\t\tPrint the graph in given representation\nBreadth-first search or BFS\t\tPRzeszukanie grafu metodą Breadth-first search\nDepth-first search or DFS\t\tPRzeszukanie grafu metodą Depth-first search\nFind\t\tReturn true if the egde between vertices exists, otherwise return false\nSort\t\tSort topologically using\n\t -Kahn algorithm (Kahn)\n\t-Tarjan algorithm (Tarjan)";
     std::string action, sort_method;
     while(std::cin){
         std::cin >> action;
@@ -30,13 +30,13 @@ void actions_table(edgeList *eList, int edges, int vertices){
             else std::cout << "The edge (" << from << "," << to << ") doesn't exist.\n";
 
         }
-        else if(action == "Breath-first search" or action == "BFS"){
+        else if(action == "Breadth-first search" or action == "BFS"){
             bfs_table(eList, edges, vertices);
-            std::cout << "Breath-first search algorithm executed successfully.\n";
+            std::cout << "Breadth-first search algorithm executed successfully.\n";
         }
-        else if(action == "Deep-first search" or action == "DFS"){
+        else if(action == "Depth-first search" or action == "DFS"){
             dfs_table(eList, edges, vertices);
-            std::cout << "Deep-first search algorithm executed successfully.\n";
+            std::cout << "Depth-first search algorithm executed successfully.\n";
         }
         else if(action == "Sort"){
             std::cin >> sort_method;

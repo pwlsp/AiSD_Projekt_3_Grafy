@@ -9,7 +9,7 @@
 
 void actions_matrix(int **matrix, int vertices){
     std::cout << "Actions\n";
-   std::string message = "Help\t\tShow this message\nPrint\t\tPrint the graph in given representation\nBreath-first search or BFS\t\tPRzeszukanie grafu metodą Breadth-first search\nDeep-first search or DFS\t\tPRzeszukanie grafu metodą Deep-first search\nFind\t\tReturn true if the egde between vertices exists, otherwise return false\nKahn\t\tSort topologically using Kahn algorithm\nTarjan\t\tSort topologically using Tarjan algorithm";
+   std::string message = "Help\t\tShow this message\nPrint\t\tPrint the graph in given representation\nBreadth-first search or BFS\t\tPRzeszukanie grafu metodą Breadth-first search\nDepth-first search or DFS\t\tPRzeszukanie grafu metodą Depth-first search\nFind\t\tReturn true if the egde between vertices exists, otherwise return false\nKahn\t\tSort topologically using Kahn algorithm\nTarjan\t\tSort topologically using Tarjan algorithm";
     std::string action, sort_method;
     while(std::cin){
         std::cin >> action;
@@ -17,7 +17,7 @@ void actions_matrix(int **matrix, int vertices){
         if(action == "Help") std::cout << message;
         else if(action == "Print"){
             print_graph_matrix(matrix, vertices);
-            std::cout << "The graph ahs been printed successfully.\n";
+            std::cout << "The graph has been printed successfully.\n";
         }
         else if(action == "Find"){
             int from, to;
@@ -28,13 +28,13 @@ void actions_matrix(int **matrix, int vertices){
             if(matrix[from][to]) std::cout << "The edge (" << from << "," << to << ") exists.\n";
             else std::cout << "The edge (" << from << "," << to << ") doesn't exist.\n";
         }
-        else if(action == "Breath-first search" or action == "BFS"){
+        else if(action == "Breadth-first search" or action == "BFS"){
             bfs_matrix(matrix, vertices);
-            std::cout << "Breath-first search algorithm executed successfully.\n";
+            std::cout << "Breadth-first search algorithm executed successfully.\n";
         }
-        else if(action == "Deep-first search" or action == "DFS"){
+        else if(action == "Depth-first search" or action == "DFS"){
             dfs_matrix(matrix, vertices);
-            std::cout << "Deep-first search algorithm executed successfully.\n";
+            std::cout << "Depth-first search algorithm executed successfully.\n";
         }
         else if(action == "Sort"){
             std::cin >> sort_method;

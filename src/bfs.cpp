@@ -17,7 +17,7 @@ void bfs_go_matrix(int **matrix, int V, int N, bool *visited){
         j = 0;
         //dodawaj od tego obecnego i idz dalej w kolejce
         while(j < N){
-            if(matrix[U][j] and !visited[j]){
+            if(matrix[U][j] == 1 and !visited[j]){
                 Q.push(j);
                 visited[j] = 1;
             }

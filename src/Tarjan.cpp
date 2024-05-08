@@ -49,15 +49,20 @@ void Tarjan_go_table(int **matrix, int vertices, int *color, std::stack<int> &St
 
 void Tarjan_matrix(int **matrix, int vertices)
 {
+    // DEKLARACJE:
     std::stack<int> Stack;
     int ins[vertices], pierwszy = 0;
     int *color;
     color = new int[vertices];
+
+    // NAPEŁNIAMY ZERAMI TABLICĘ "COLOR" I "INS" (JAKI STOPIEŃ WEJŚCIOWY)
     for (int i = 0; i < vertices; i++)
     {
         color[i] = 0;
         ins[i] = 0;
     }
+
+    // SPRAWDZAMY JAKI JEST STOPIEŃ WEJŚCIOWY WIERZCHOŁKÓW I ZAPISUJEMY W "INS"
     for (int i = 0; i < vertices; i++)
     {
         for (int j = 0; j < vertices; j++)
@@ -69,27 +74,46 @@ void Tarjan_matrix(int **matrix, int vertices)
         }
     }
 
+    // ###### WŁAŚCIWY ALGORYTM #######
+
+    // ROBIMY DFS'A ZACZYNAJĄC OD WIERZCHOŁKÓW NIEZALEŻNYCH
     for (int i = 0; i < vertices; i++)
     {
         if (ins[i] == 0 && !color[i])
         {
-            std::cout << "Pierwsza petla: " << i << "\n";
             Tarjan_go_matrix(matrix, vertices, color, Stack, i, ins);
-        }
+        }   
     }
-    for (int i = 0; i < vertices; i++)
+
+    /* TO NIE JEST POTRZEBNE CHYBA
+            // POTEM OD ZALEŻNYCH
+            for (int i = 0; i < vertices; i++)
+            {
+                if (!color[i])
+                {
+                    Tarjan_go_matrix(matrix, vertices, color, Stack, i, ins);
+                }
+            }
+    */
+
+   int czarnych = 0;
+    for (int j = 0; j < vertices; j++)
     {
-        if (!color[i])
+        if (color[j] == 2)
         {
-            Tarjan_go_matrix(matrix, vertices, color, Stack, i, ins);
+            czarnych++;
         }
     }
 
-    while (!Stack.empty()) {
-        std::cout << Stack.top() <<" ";
-        Stack.pop();
-    }
-    std::cout << "\n";
+    if (czarnych == vertices)
+    {
+        while (!Stack.empty())
+        {
+            std::cout << Stack.top() << " ";
+            Stack.pop();
+        }
+        std::cout << "\n";
+    }    
 }
 
 void Tarjan_list(graph *L, int vertices)

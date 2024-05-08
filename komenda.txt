@@ -76,7 +76,6 @@ matrix
 Print
 Sort
 Tarjan
-Print
 Exit
 EOF
 

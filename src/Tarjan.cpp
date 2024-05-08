@@ -5,7 +5,7 @@
 #include "../include/struct_graph.h"
 #include "../include/struct_edgeList.h"
 
-void Tarjan_go_matrix(int **matrix_copy, int vertices, int *color, std::stack<int> Stack, int Vertex, int *ins)
+void Tarjan_go_matrix(int **matrix_copy, int vertices, int *color, std::stack<int> &Stack, int Vertex, int *ins)
 {
     // if (color[Vertex] == 0)
     // {
@@ -82,14 +82,25 @@ void Tarjan_matrix(int **matrix, int vertices)
 
     for (int i = 0; i < vertices; i++)
     {
-        if (ins[i] == 0)
+        if (ins[i] == 0 && !color[i])
         {
-            pierwszy = i;
-            break;
+            std::cout << "Pierwsza petla: " << i << "\n";
+            Tarjan_go_matrix(matrix_copy, vertices, color, Stack, i, ins);
+        }
+    }
+    for (int i = 0; i < vertices; i++)
+    {
+        if (!color[i])
+        {
+            Tarjan_go_matrix(matrix_copy, vertices, color, Stack, i, ins);
         }
     }
 
-    // Tarjan_go_matrix(matrix_copy, vertices, color, Stack, 0, ins);
+    while (!Stack.empty()) {
+        std::cout << Stack.top() <<" ";
+        Stack.pop();
+    }
+    std::cout << "\n";
 }
 
 void Tarjan_list(graph *L, int vertices)

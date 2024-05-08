@@ -5,42 +5,42 @@
 #include "../include/struct_graph.h"
 #include "../include/struct_edgeList.h"
 
-void Tarjan_go_matrix(int **matrix_copy, int vertices, int *color, std::stack<int> &Stack, int Vertex, int *ins)
+void Tarjan_go_matrix(int **matrix, int vertices, int *color, std::stack<int> &Stack, int Vertex, int *ins)
 {
     color[Vertex] = 1;
     for (int i = 0; i < vertices; i++)
     {
-        if (matrix_copy[Vertex][i] == 1 && (!color[i]) && color[Vertex] == 1)
+        if (matrix[Vertex][i] == 1 && (!color[i]) && color[Vertex] == 1)
         {
-            Tarjan_go_matrix(matrix_copy, vertices, color, Stack, i, ins);
+            Tarjan_go_matrix(matrix, vertices, color, Stack, i, ins);
         }
     }
     color[Vertex] = 2;
     Stack.push(Vertex);
 }
 
-void Tarjan_go_list(int **matrix_copy, int vertices, int *color, std::stack<int> &Stack, int Vertex, int *ins)
+void Tarjan_go_list(int **matrix, int vertices, int *color, std::stack<int> &Stack, int Vertex, int *ins)
 {
     color[Vertex] = 1;
     for (int i = 0; i < vertices; i++)
     {
-        if (matrix_copy[Vertex][i] == 1 && (!color[i]) && color[Vertex] == 1)
+        if (matrix[Vertex][i] == 1 && (!color[i]) && color[Vertex] == 1)
         {
-            Tarjan_go_matrix(matrix_copy, vertices, color, Stack, i, ins);
+            Tarjan_go_matrix(matrix, vertices, color, Stack, i, ins);
         }
     }
     color[Vertex] = 2;
     Stack.push(Vertex);
 }
 
-void Tarjan_go_table(int **matrix_copy, int vertices, int *color, std::stack<int> &Stack, int Vertex, int *ins)
+void Tarjan_go_table(int **matrix, int vertices, int *color, std::stack<int> &Stack, int Vertex, int *ins)
 {
     color[Vertex] = 1;
     for (int i = 0; i < vertices; i++)
     {
-        if (matrix_copy[Vertex][i] == 1 && (!color[i]) && color[Vertex] == 1)
+        if (matrix[Vertex][i] == 1 && (!color[i]) && color[Vertex] == 1)
         {
-            Tarjan_go_matrix(matrix_copy, vertices, color, Stack, i, ins);
+            Tarjan_go_matrix(matrix, vertices, color, Stack, i, ins);
         }
     }
     color[Vertex] = 2;
@@ -58,16 +58,11 @@ void Tarjan_matrix(int **matrix, int vertices)
         color[i] = 0;
         ins[i] = 0;
     }
-    int **matrix_copy;
-    matrix_copy = new int *[vertices];
-    for (int i = 0; i < vertices; i++)
-        matrix_copy[i] = new int[vertices];
     for (int i = 0; i < vertices; i++)
     {
         for (int j = 0; j < vertices; j++)
         {
-            matrix_copy[i][j] = matrix[i][j];
-            if (matrix_copy[i][j] == 1)
+            if (matrix[i][j] == 1)
             {
                 ins[j]++;
             }
@@ -79,14 +74,14 @@ void Tarjan_matrix(int **matrix, int vertices)
         if (ins[i] == 0 && !color[i])
         {
             std::cout << "Pierwsza petla: " << i << "\n";
-            Tarjan_go_matrix(matrix_copy, vertices, color, Stack, i, ins);
+            Tarjan_go_matrix(matrix, vertices, color, Stack, i, ins);
         }
     }
     for (int i = 0; i < vertices; i++)
     {
         if (!color[i])
         {
-            Tarjan_go_matrix(matrix_copy, vertices, color, Stack, i, ins);
+            Tarjan_go_matrix(matrix, vertices, color, Stack, i, ins);
         }
     }
 
@@ -108,7 +103,7 @@ void Tarjan_table(edgeList *eList, int edges, int vertices)
 // ########## WYPISYWANIE MATRYCY ###########
 // for(int i = 0; i < vertices; i++){
 //     for(int j = 0; j < vertices; j++){
-//         std::cout << matrix_copy[i][j] << " ";
+//         std::cout << matrix[i][j] << " ";
 //     }
 //     std::cout<<"\n";
 // }

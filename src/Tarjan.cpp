@@ -33,26 +33,6 @@ void Tarjan_go_matrix(int **matrix_copy, int vertices, int *color, std::stack<in
     Stack.push(Vertex);
 }
 
-// bool DFStsort (int **matrix_copy, int vertices, int *color, std::stack<int> Stack, int V)
-// {
-//   slistEl *p;
-
-//   if(visited [v] == 1)     // Sprawdzamy, czy nie ma cyklu
-//   {
-//     cout << "\nNOT A DAG\n\n";    // Jest cykl - sortowanie topologiczne
-//     return false;                 // nie może zostać wykonane
-//   }
-//   if(visited [v] == 0)    // Jeśli wierzchołek jest biały,
-//   {
-//     visited [v] = 1;         // to kolorujemy go na szaro
-//     for(p = graf [v];p;p = p->next) // i przeglądamy wszystkich sąsiadów
-//       if(!DFStsort (p->v)) return false; // Wywołanie rekurencyjne
-//     visited [v] = 2;        // Wierzchołek kolorujemy na zielono
-//     S [sptr++] = v;             // i umieszczamy go na stosie
-//   }
-//   return true;                    // Kończymy z wynikiem true
-// }
-
 void Tarjan_matrix(int **matrix, int vertices)
 {
     std::stack<int> Stack;

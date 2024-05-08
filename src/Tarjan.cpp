@@ -7,20 +7,34 @@
 
 void Tarjan_go_matrix(int **matrix_copy, int vertices, int *color, std::stack<int> &Stack, int Vertex, int *ins)
 {
-    // if (color[Vertex] == 0)
-    // {
-    //     color[Vertex] = 1;
-    //     for (int i = 0; i < vertices; i++)
-    //     {
-    //         if (matrix_copy[Vertex][i] == 1 && (!color[i]) && color[Vertex] == 1)
-    //         {
-    //             Tarjan_go_matrix(matrix_copy, vertices, color, Stack, i, ins);
-    //         }
-    //     }
-    //     color[Vertex] = 2;
-    //     Stack.push(Vertex);
-    // }
+    color[Vertex] = 1;
+    for (int i = 0; i < vertices; i++)
+    {
+        if (matrix_copy[Vertex][i] == 1 && (!color[i]) && color[Vertex] == 1)
+        {
+            Tarjan_go_matrix(matrix_copy, vertices, color, Stack, i, ins);
+        }
+    }
+    color[Vertex] = 2;
+    Stack.push(Vertex);
+}
 
+void Tarjan_go_list(int **matrix_copy, int vertices, int *color, std::stack<int> &Stack, int Vertex, int *ins)
+{
+    color[Vertex] = 1;
+    for (int i = 0; i < vertices; i++)
+    {
+        if (matrix_copy[Vertex][i] == 1 && (!color[i]) && color[Vertex] == 1)
+        {
+            Tarjan_go_matrix(matrix_copy, vertices, color, Stack, i, ins);
+        }
+    }
+    color[Vertex] = 2;
+    Stack.push(Vertex);
+}
+
+void Tarjan_go_table(int **matrix_copy, int vertices, int *color, std::stack<int> &Stack, int Vertex, int *ins)
+{
     color[Vertex] = 1;
     for (int i = 0; i < vertices; i++)
     {

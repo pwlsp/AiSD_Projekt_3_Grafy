@@ -22,33 +22,25 @@ void Tarjan_go_matrix(int **matrix, int vertices, int *color, std::stack<int> &S
 void Tarjan_go_list(graph *L, int vertices, int *color, std::stack<int> &Stack, int Vertex, int *ins)
 {
     color[Vertex] = 1;
-    
+
     for (std::list<int>::iterator it = L[Vertex].next.begin(); it != L[Vertex].next.end(); it++)
     {
         if ((!color[*it]) && color[Vertex] == 1)
         {
-            Tarjan_go_matrix(L, vertices, color, Stack, *it, ins);
-        }
-    }
-    for (int i = 0; i < vertices; i++)
-    {
-        if (matrix[Vertex][i] == 1 && (!color[i]) && color[Vertex] == 1)
-        {
-            Tarjan_go_matrix(matrix, vertices, color, Stack, i, ins);
+            Tarjan_go_list(L, vertices, color, Stack, *it, ins);
         }
     }
     color[Vertex] = 2;
     Stack.push(Vertex);
 }
 
-void Tarjan_go_table(edgeList *eList, int vertices, int *color, std::stack<int> &Stack, int Vertex, int *ins)
+void Tarjan_go_table(edgeList *eList, int edges, int vertices, int *color, std::stack<int> &Stack, int Vertex, int *ins)
 {
     color[Vertex] = 1;
-    for (int i = 0; i < vertices; i++)
+    for (int i = 0; i < edges; i++)
     {
-        if (matrix[Vertex][i] == 1 && (!color[i]) && color[Vertex] == 1)
-        {
-            Tarjan_go_matrix(matrix, vertices, color, Stack, i, ins);
+        if(eList[i].out == Vertex && (!color[eList[i].in]) && color[Vertex] == 1){
+            Tarjan_go_table(eList, edges, vertices, color, Stack, eList[i].in, ins);
         }
     }
     color[Vertex] = 2;
@@ -93,16 +85,16 @@ void Tarjan_matrix(int **matrix, int vertices)
         }
     }
 
-    int czarnych = 0;
+    int blacks = 0;
     for (int j = 0; j < vertices; j++)
     {
         if (color[j] == 2)
         {
-            czarnych++;
+            blacks++;
         }
     }
 
-    if (czarnych == vertices)
+    if (blacks == vertices)
     {
         while (!Stack.empty())
         {
@@ -148,16 +140,16 @@ void Tarjan_list(graph *L, int vertices)
         }
     }
 
-    int czarnych = 0;
+    int blacks = 0;
     for (int j = 0; j < vertices; j++)
     {
         if (color[j] == 2)
         {
-            czarnych++;
+            blacks++;
         }
     }
 
-    if (czarnych == vertices)
+    if (blacks == vertices)
     {
         while (!Stack.empty())
         {
@@ -184,15 +176,9 @@ void Tarjan_table(edgeList *eList, int edges, int vertices)
     }
 
     // SPRAWDZAMY JAKI JEST STOPIEŃ WEJŚCIOWY WIERZCHOŁKÓW I ZAPISUJEMY W "INS"
-    for (int i = 0; i < vertices; i++)
+    for (int i = 0; i < edges; i++)
     {
-        for (int j = 0; j < vertices; j++)
-        {
-            if (matrix[i][j] == 1)
-            {
-                ins[j]++;
-            }
-        }
+        ins[eList[i].in]++;
     }
 
     // ###### WŁAŚCIWY ALGORYTM #######
@@ -202,20 +188,20 @@ void Tarjan_table(edgeList *eList, int edges, int vertices)
     {
         if (ins[i] == 0 && !color[i])
         {
-            Tarjan_go_matrix(matrix, vertices, color, Stack, i, ins);
+            Tarjan_go_table(eList, edges, vertices, color, Stack, i, ins);
         }
     }
-
-    int czarnych = 0;
+    
+    int blacks = 0;
     for (int j = 0; j < vertices; j++)
     {
         if (color[j] == 2)
         {
-            czarnych++;
+            blacks++;
         }
     }
 
-    if (czarnych == vertices)
+    if (blacks == vertices)
     {
         while (!Stack.empty())
         {
@@ -225,30 +211,3 @@ void Tarjan_table(edgeList *eList, int edges, int vertices)
         std::cout << "\n";
     }
 }
-
-// ########## WYPISYWANIE MATRYCY ###########
-// for(int i = 0; i < vertices; i++){
-//     for(int j = 0; j < vertices; j++){
-//         std::cout << matrix[i][j] << " ";
-//     }
-//     std::cout<<"\n";
-// }
-
-// ########### WYPISYWANIE LISTY ############
-// for (int i = 0; i < vertices; i++)
-// {
-//     std::cout << color[i] << " ";
-// }
-
-// std::cout << "\n";
-
-/* TO NIE JEST POTRZEBNE CHYBA
-            // POTEM OD ZALEŻNYCH
-            for (int i = 0; i < vertices; i++)
-            {
-                if (!color[i])
-                {
-                    Tarjan_go_matrix(matrix, vertices, color, Stack, i, ins);
-                }
-            }
-    */

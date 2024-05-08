@@ -38,8 +38,9 @@ matrix
 0 0 0 0 0 -1 0 1 0 0
 -1 0 0 0 -1 0 0 0 0 0
 Print
+DFS
 Sort
-Kahn
+Tarjan
 Exit
 EOF
 
@@ -87,8 +88,9 @@ matrix
 1 0 0 0 0 0 0 0 0 0 
 0 1 0 0 0 0 0 0 0 0
 Print
-BFS
 DFS
+Sort
+Tarjan
 Exit
 EOF
 

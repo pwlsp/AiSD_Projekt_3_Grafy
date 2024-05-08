@@ -15,7 +15,7 @@ void Kahn_matrix(int **matrix, int vertices){
     for(int i = 0; i < vertices; i++){
         for(int j = 0; j < vertices; j++){
             matrix_copy[i][j] = matrix[i][j];
-            if(matrix_copy[i][j]){
+            if(matrix_copy[i][j] == 1){
                 ins[j]++; //poczatkowa ilosc wejsc
                 ins_count++;
             }

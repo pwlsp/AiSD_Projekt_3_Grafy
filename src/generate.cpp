@@ -145,6 +145,22 @@ void generate_list(graph *L, int vertices)
     }
 }
 
-void generate_table(edgeList *eList, int edges, int vertices)
+void generate_table(edgeList *eList, int vertices)
 {
+    int **matrix;
+    matrix = new int *[vertices];
+    for (int i = 0; i < vertices; i++)
+        matrix[i] = new int[vertices];
+
+    generate_matrix(matrix, vertices);
+    // print_graph_matrix(matrix, vertices);
+
+    for (int i = 0; i < vertices; i++){
+        for (int j = 0; j < vertices; j++){
+            if(matrix[i][j] == 1){
+                eList[i].out = 
+                eList[i].in;
+            }
+        }
+    }
 }

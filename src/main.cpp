@@ -13,16 +13,19 @@
 #include "../include/struct_graph.h"
 #include "../include/struct_edgeList.h"
 
-int main(int argc, char *argv[]){
+int main(int argc, char *argv[])
+{
 
-    if(argc <= 1){
+    if (argc <= 1)
+    {
         std::cout << "No arguments given\n";
         return 1;
     }
 
     std::string create = std::string(argv[1]);
 
-    if(create != "--generate" && create != "--user-provided"){
+    if (create != "--generate" && create != "--user-provided")
+    {
         std::cout << "Wrong arguments\n";
         return 0;
     }
@@ -33,40 +36,85 @@ int main(int argc, char *argv[]){
 
     int vertices, edges;
 
-    if(type == "matrix"){
+    if (type == "matrix")
+    {
         std::cin >> vertices;
         std::cout << "vertices> " << vertices << "\n";
-        int **matrix; matrix = new int *[vertices];
-        for(int i = 0; i < vertices; i++) matrix[i] = new int[vertices];
-        if(create == "--generate") generate_matrix(matrix, vertices);
-        if(create == "--user-provided") user_provided_matrix(matrix, vertices); 
-        actions_matrix(matrix, vertices);         
+        int **matrix;
+        matrix = new int *[vertices];
+        for (int i = 0; i < vertices; i++)
+            matrix[i] = new int[vertices];
+        if (create == "--generate"){
+            double saturation;
+            std::cin >> saturation;
+            std::cout << "saturation> " << saturation << "\n";
+
+            int maximum = ((vertices * vertices) - vertices) / 2;
+            int edges_sat = maximum * saturation / 100;
+
+            generate_matrix(matrix, vertices, maximum, edges_sat);
+        }
+        if (create == "--user-provided")
+            user_provided_matrix(matrix, vertices);
+        actions_matrix(matrix, vertices);
     }
-    else if(type == "list"){
+    else if (type == "list")
+    {
         std::cin >> vertices;
         std::cout << "vertices> " << vertices << "\n";
-        graph *L; L = new graph[vertices];
-        if(create == "--generate") generate_list(L, vertices);
-        if(create == "--user-provided") user_provided_list(L, vertices);
+        graph *L;
+        L = new graph[vertices];
+        if (create == "--generate")
+        {
+            double saturation;
+            std::cin >> saturation;
+            std::cout << "saturation> " << saturation << "\n";
+
+            int maximum = ((vertices * vertices) - vertices) / 2;
+            int edges_sat = maximum * saturation / 100;
+
+            generate_list(L, vertices, maximum, edges_sat);
+        }
+            
+        if (create == "--user-provided")
+            user_provided_list(L, vertices);
         actions_list(L, vertices);
     }
-    else if(type == "table"){
-        edgeList *eList; eList = new edgeList[edges];
-        std::cin >> vertices;
-        std::cout << "vertices> " << vertices << "\n";
-        std::cin >> edges;
-        std::cout << "edges> " << edges << "\n";
-        if(create == "--generate"){
-            generate_table(eList, vertices);
+    else if (type == "table")
+    {
+        edgeList *eList;
+        eList = new edgeList[edges];
+        
+        if (create == "--generate")
+        {
+            std::cin >> vertices;
+            std::cout << "vertices> " << vertices << "\n";
+
+            double saturation;
+            std::cin >> saturation;
+            std::cout << "saturation> " << saturation << "\n";
+
+            int maximum = ((vertices * vertices) - vertices) / 2;
+            int edges_sat = maximum * saturation / 100;
+
+            edges = edges_sat;
+
+            generate_table(eList, vertices, maximum, edges_sat);
         }
-        if(create == "--user-provided"){
+        if (create == "--user-provided")
+        {
+            std::cin >> vertices;
+            std::cout << "vertices> " << vertices << "\n";
+            std::cin >> edges;
+            std::cout << "edges> " << edges << "\n";
             user_provided_table(eList, edges);
         }
         actions_table(eList, edges, vertices);
     }
-    else{
+    else
+    {
         std::cout << "Unknown graph representation\n";
         return 0;
     }
-    return 0;  
+    return 0;
 }

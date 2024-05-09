@@ -18,16 +18,8 @@ int generate_random_number(int x, int y)
     return distribution(gen);
 }
 
-void generate_matrix(int **matrix, int vertices)
+void generate_matrix(int **matrix, int vertices, int maximum, int edges_sat)
 {
-    // POBIERANIE WARTOŚCI saturation
-    double saturation;
-    std::cin >> saturation;
-    std::cout << "saturation> " << saturation << "\n";
-
-    // OBLICZANIE edges_sat, CZYLI MAKSYMALNEJ LICZBY KRAWĘDZI DAG O PODANYM saturation
-    int maximum = ((vertices * vertices) - vertices) / 2;
-    int edges_sat = maximum * saturation / 100;
     std::cout << "\n-----------GRAPH GENERATION----------\n\n";
     std::cout << "100\% of edges: " << maximum << "\n";
     std::cout << "Number of edges that can be added with given saturation: " << edges_sat << "\n";
@@ -102,6 +94,10 @@ void generate_matrix(int **matrix, int vertices)
 
     // UZUPEŁNIANIE MACIERZY AŻ BĘDZIE WYSTARCZAJĄCO DUŻO KRAWĘDZI
     int edges = vertices - 1;
+    if (edges > edges_sat)
+    {
+        std::cout<<"\nWARNING: Given saturation is not enough to make a DAG - generating DAG with minimum amount of edges.\n";
+    }
     while (edges < edges_sat)
     {
         // std::cout<<"\nedges: "<<edges<<"\n";
@@ -126,40 +122,50 @@ void generate_matrix(int **matrix, int vertices)
     std::cout << "\n-----------GRAPH GENERATION COMPLETE----------\n\n";
 }
 
-void generate_list(graph *L, int vertices)
+void generate_list(graph *L, int vertices, int maximum, int edges_sat)
 {
     int **matrix;
     matrix = new int *[vertices];
     for (int i = 0; i < vertices; i++)
         matrix[i] = new int[vertices];
 
-    generate_matrix(matrix, vertices);
+    generate_matrix(matrix, vertices, maximum, edges_sat);
     // print_graph_matrix(matrix, vertices);
 
-    for (int i = 0; i < vertices; i++){
-        for (int j = 0; j < vertices; j++){
-            if(matrix[i][j] == 1){
+    for (int i = 0; i < vertices; i++)
+    {
+        for (int j = 0; j < vertices; j++)
+        {
+            if (matrix[i][j] == 1)
+            {
                 L[i].next.push_back(j);
             }
         }
     }
 }
 
-void generate_table(edgeList *eList, int vertices)
+void generate_table(edgeList *eList, int vertices, int maximum, int edges_sat)
 {
     int **matrix;
     matrix = new int *[vertices];
     for (int i = 0; i < vertices; i++)
         matrix[i] = new int[vertices];
 
-    generate_matrix(matrix, vertices);
+    generate_matrix(matrix, vertices, maximum, edges_sat);
     // print_graph_matrix(matrix, vertices);
 
-    for (int i = 0; i < vertices; i++){
-        for (int j = 0; j < vertices; j++){
-            if(matrix[i][j] == 1){
-                eList[i].out = 
-                eList[i].in;
+    int iter = 0;
+
+    for (int i = 0; i < vertices; i++)
+    {
+        for (int j = 0; j < vertices; j++)
+        {
+            if (matrix[i][j] == 1)
+            {
+                eList[iter].out = i;
+                eList[iter].in = j;
+
+                iter++;
             }
         }
     }

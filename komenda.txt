@@ -1,3 +1,15 @@
+GENEROWANIE
+
+./a.out --generate << EOF
+matrix
+7
+100
+Print
+Exit
+EOF
+
+
+
 --------------------------------------------------------------------------------
 prezentacja - algorytm Tarjana
 0 9 4 1 6 7 2 3 5 8

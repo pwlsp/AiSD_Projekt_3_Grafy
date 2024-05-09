@@ -44,9 +44,47 @@ std::vector<std::vector<int>> generateDAG(int nodes, double saturation) {
     return graph;
 }
 
-void generate_matrix(int **matrix, int vertices){
-    for(int i = 1; i < vertices; i++){
+void topological_sort_DFS(int Vertex, int **matrix, bool *visited, std::vector<int>& order, int vertices) {
+    visited[Vertex] = true;
+    for (int neighbor = 0; neighbor < vertices; ++neighbor) {
+        if (matrix[Vertex][neighbor] && !visited[neighbor]) {
+            topological_sort_DFS(neighbor, matrix, visited, order, vertices);
+        }
+    }
+    order.push_back(Vertex);
+}
 
+void generate_matrix(int **matrix, int vertices){
+    double saturation;
+    std::cin >> saturation;
+    std::cout << "saturation> " << saturation << "\n";
+
+    std::vector<int> order;
+    bool *visited; visited = new bool[vertices];
+    for(int i = 0; i < vertices; i++) visited[i] = 0;
+
+    //NA POCZĄTEK WYPEŁNIAMY ZERAMI MACIERZ
+    for(int i = 0; i < vertices; i++){
+        for(int j = 0; i < vertices; i++){
+            matrix[i][j] = 0;
+        }
+    }
+
+    for (int i = 0; i < vertices; ++i) {
+        if (!visited[i]) {
+            topological_sort_DFS(i, matrix, visited, order, vertices);
+        }
+    }
+    std::reverse(order.begin(), order.end()); // Odwrócenie kolejności, aby rozpocząć od wierzchołka o najwyższym indeksie
+
+    //GENEROWANIE GRAFU
+    srand(time(nullptr));
+    for (int i = 0; i < vertices; ++i) {
+        int numEdges = std::min(i, static_cast<int>(saturation / 100.0 * i));
+        for (int j = 0; j < numEdges; ++j) {
+            int from = rand() % i; // Losowy wierzchołek źródłowy z wcześniejszych w kolejności topologicznej
+            matrix[order[from]][order[i]] = 1; // Dodanie krawędzi
+        }
     }
 }
 

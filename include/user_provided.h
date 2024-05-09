@@ -7,4 +7,4 @@ void user_provided_matrix(int **matrix, int vertices);
 
 void user_provided_list(graph *L, int vertices);
 
-void user_provided_table(edgeList *eList, int edges);
+void user_provided_table(edgeList *eList, int edges, int vertices);

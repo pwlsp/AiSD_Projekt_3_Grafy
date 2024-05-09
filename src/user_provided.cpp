@@ -64,21 +64,25 @@ void user_provided_list(graph *L, int vertices)
     }
 }
 
-void user_provided_table(edgeList *eList, int edges)
+void user_provided_table(edgeList *eList, int edges, int vertices)
 { // int &vertices){
-    int prev;
+    int prevL, prevR;
     for (int i = 0; i < edges; i++)
     {
         std::cin >> eList[i].out >> eList[i].in;
-        if (i == 0)
-            prev = eList[i].out;
-        else
+        if (i != 0)
         {
-            if (prev > eList[i].out)
+            if (prevL > eList[i].out || (prevL == eList[i].out && prevR > eList[i].in))
             {
                 std::cout << "The list of edges must be sorted.\nExiting the program...\n";
                 exit(0);
             }
+            if(eList[i].out > vertices-1 || eList[i].in > vertices-1){
+                std::cout << "Vertex out of range.\nExiting the program...\n";
+                exit(0);
+            }
         }
+        prevL = eList[i].out;
+        prevR = eList[i].in;
     }
 }

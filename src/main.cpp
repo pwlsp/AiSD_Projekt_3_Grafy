@@ -90,7 +90,6 @@ int main(int argc, char *argv[])
     else if (type == "table")
     {
         edgeList *eList;
-        eList = new edgeList[edges];
         
         if (create == "--generate")
         {
@@ -105,6 +104,7 @@ int main(int argc, char *argv[])
             int edges_sat = maximum * saturation / 100;
 
             edges = edges_sat;
+            eList = new edgeList[edges];
 
             generate_table(eList, vertices, maximum, edges_sat);
         }
@@ -114,7 +114,8 @@ int main(int argc, char *argv[])
             std::cout << "vertices> " << vertices << "\n";
             std::cin >> edges;
             std::cout << "edges> " << edges << "\n";
-            user_provided_table(eList, edges);
+            eList = new edgeList[edges];
+            user_provided_table(eList, edges, vertices);
         }
         actions_table(eList, edges, vertices);
         delete[] eList;

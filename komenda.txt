@@ -2,11 +2,9 @@ GENEROWANIE
 
 ./a.out --generate << EOF
 matrix
-7
+6
 100
 Print
-Sort
-Tarjan
 Exit
 EOF
 

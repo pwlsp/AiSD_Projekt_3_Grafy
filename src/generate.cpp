@@ -3,6 +3,8 @@
 #include <list>
 #include <vector>
 #include <bits/stdc++.h>
+#include <algorithm>
+#include <random>
 
 #include "../include/struct_graph.h"
 #include "../include/struct_edgeList.h"
@@ -105,7 +107,16 @@ void generate_matrix(int **matrix, int vertices){
     std::cin >> saturation;
     std::cout << "saturation> " << saturation << "\n";
 
-    std::vector<int> order;
+    std::vector<int> order(vertices);
+    // Fill vector with numbers from 0 to vertices-1
+    for (int i = 0; i < vertices; ++i) {
+        order[i] = i;
+    }
+    // Randomly shuffle the elements
+    std::random_device rd;
+    std::mt19937 g(rd());
+    std::shuffle(order.begin(), order.end(), g);
+
     bool *visited; visited = new bool[vertices];
     for(int i = 0; i < vertices; i++) visited[i] = 0;
 
@@ -115,6 +126,12 @@ void generate_matrix(int **matrix, int vertices){
             matrix[i][j] = 0;
         }
     }
+
+    std::cout << "Order: ";
+    for(int i = 0; i < vertices; i++){
+        std::cout << order[i] << " ";
+    }
+    std::cout << "\n";
 }
 
 void generate_list(graph *L, int vertices){

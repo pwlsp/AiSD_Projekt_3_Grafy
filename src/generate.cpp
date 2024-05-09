@@ -135,33 +135,31 @@ void generate_matrix_bad(int **matrix, int vertices)
 
 void generate_matrix(int **matrix, int vertices)
 {
+    // POBIERANIE WARTOŚCI saturation
     double saturation;
     std::cin >> saturation;
     std::cout << "saturation> " << saturation << "\n";
 
+    // OBLICZANIE edges_sat, CZYLI MAKSYMALNEJ LICZBY KRAWĘDZI DAG O PODANYM saturation
     int maximum = ((vertices * vertices) - vertices) / 2;
     int edges_sat = maximum * saturation / 100;
-    std::cout << "maximum: " << maximum << "\n";
-    std::cout << "edges_sat: " << edges_sat << "\n";
+    std::cout << "\n-----------GRAPH GENERATION----------\n\n";
+    std::cout << "100\% of edges: " << maximum << "\n";
+    std::cout << "Number of edges that can be added with given saturation: " << edges_sat << "\n";
     std::vector<std::vector<int>> edge_list;
 
+    // TWORZENIE VECTORA order
     std::vector<int> order(vertices);
-    // Fill vector with numbers from 0 to vertices-1
     for (int i = 0; i < vertices; ++i)
     {
         order[i] = i;
     }
-    // Randomly shuffle the elements
+    // TASOWANIE order'A I TYM SAMYM TWORZENIE KOLEJNOŚCI TOPOLOGICZNEJ NASZEGO GRAFU DAG
     std::random_device rd;
     std::mt19937 g(rd());
     std::shuffle(order.begin(), order.end(), g);
 
-    bool *visited;
-    visited = new bool[vertices];
-    for (int i = 0; i < vertices; i++)
-        visited[i] = 0;
-
-    // NA POCZĄTEK WYPEŁNIAMY ZERAMI MACIERZ I DODAJEMY WSZYSTKIE MOŻLIWE KRAWĘDZIE DO edge_list
+    // NA POCZĄTEK WYPEŁNIAMY ZERAMI MACIERZ I DODAJEMY WSZYSTKIE MOŻLIWE KRAWĘDZIE NIETWORZĄCE CYKLI DO edge_list
     for (int i = 0; i < vertices; i++)
     {
         for (int j = 0; j < vertices; j++)
@@ -182,23 +180,26 @@ void generate_matrix(int **matrix, int vertices)
     }
 
     // WYPISANIE ORDERA
-    std::cout << "Order: ";
+    std::cout << "Topological order of graph's nodes: ";
     for (int i = 0; i < vertices; i++)
     {
         std::cout << order[i] << " ";
     }
-    std::cout << "\nPoczątkowy edge_list przed usuwaniem dodanych:\n";
+
+
+    std::cout << "\n\nThe list of edges that can be added to the DAG:\n";
     for (int i = 0; i < edge_list.size(); i++)
     {
         std::cout << edge_list[i][0] << " " << edge_list[i][1] << "\n";
     }
 
+    std::cout << "\nAdding the minimum number of edges so that the graph is connected:\n";
     int next;
     
     for (int i = 0; i < vertices - 1; i++)
     {
         next = generate_random_number(i + 1, vertices - 1);
-        std::cout << order[i] << " > " << order[next] << "\n";
+        std::cout << order[i] << " -> " << order[next] << "\n";
 
         matrix[order[i]][order[next]] = 1;
         matrix[order[next]][order[i]] = -1;
@@ -207,39 +208,39 @@ void generate_matrix(int **matrix, int vertices)
         edge_list.erase(std::remove(edge_list.begin(), edge_list.end(), edge_i), edge_list.end());
     }
 
-    std::cout << "\nPoczątkowy edge_list po usuwanku:\n";
+    std::cout << "\nList of the remaining edges that will be randomly selected:\n";
     for (int i = 0; i < edge_list.size(); i++)
     {
         std::cout << edge_list[i][0] << " " << edge_list[i][1] << "\n";
     }
 
-    print_graph_matrix(matrix, vertices);
+    // print_graph_matrix(matrix, vertices);
 
-    // UZUPEŁNIANIE MACIERZY AŻ BĘDZIE
+    // UZUPEŁNIANIE MACIERZY AŻ BĘDZIE WYSTARCZAJĄCO DUŻO KRAWĘDZI
     int edges = vertices - 1;
-    std::cout<<"edges: "<<edges<<"\nedges_sat: "<<edges_sat<<"\n";
     while (edges < edges_sat)
     {
-        std::cout<<"edges: "<<edges<<"\n";
+        // std::cout<<"\nedges: "<<edges<<"\n";
         int i = generate_random_number(0, edge_list.size() - 1);
         int start = edge_list[i][0];
         int end = edge_list[i][1];
         std::vector edge_i({start, end});
-        std::cout << "DODAJEMY KRAWĘDŹ: " << start << " > " << end << "\n";
+        // std::cout << "Dodajemy krawędź: " << start << " > " << end << "\n";
 
         matrix[start][end] = 1;
         matrix[end][start] = -1;
         edges++;
 
-        // USUWAMY DODANĄ KRAWĘDŹ Z LISTY DOSTĘPNYCH DO DODANIA KRAWĘDZI
+        // USUWAMY DODANĄ KRAWĘDŹ Z LISTY DOSTĘPNYCH
         edge_list.erase(edge_list.begin() + i);
 
-        for (int i = 0; i < edge_list.size(); i++)
-        {
-            std::cout << edge_list[i][0] << " " << edge_list[i][1] << "\n";
-        }
-        print_graph_matrix(matrix, vertices);
+
+        // ######## TU MOGĘ WYPISAĆ ZMIANY MACIERZY ###########
+        // print_graph_matrix(matrix, vertices);
+        // std::cout<<std::endl;
     }
+
+    std::cout << "\n-----------GRAPH GENERATION COMPLETE----------\n\n";
 }
 
 void generate_list(graph *L, int vertices)

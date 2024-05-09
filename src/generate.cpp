@@ -137,6 +137,11 @@ void generate_matrix(int **matrix, int vertices)
     std::cin >> saturation;
     std::cout << "saturation> " << saturation << "\n";
 
+    int maximum = ((vertices * vertices)- vertices) / 2 ;
+    int edges_sat = maximum * saturation / 100;
+    std::cout << "maximum: " << maximum << "\n";
+    std::cout << "edges_sat: " << edges_sat << "\n";
+
     std::vector<int> order(vertices);
     // Fill vector with numbers from 0 to vertices-1
     for (int i = 0; i < vertices; ++i)
@@ -171,12 +176,19 @@ void generate_matrix(int **matrix, int vertices)
     std::cout << "\n";
 
     int next;
+    std::vector<edgeList> edge_list((vertices*vertices)-vertices);
     for(int i = 0; i < vertices-1; i++){
         next = generate_random_number(i+1, vertices-1);
         std::cout << order[i] << " > " << order[next] << "\n";
 
         matrix[order[i]][order[next]] = 1;
         matrix[order[next]][order[i]] = -1;
+    }
+
+    // UZUPEŁNIANIE MACIERZY AŻ BĘDZIE
+    int edges = vertices - 1;
+    while(edges < edges_sat){
+        for 
     }
 }
 

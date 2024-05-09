@@ -5,6 +5,8 @@ matrix
 7
 100
 Print
+Sort
+Tarjan
 Exit
 EOF
 

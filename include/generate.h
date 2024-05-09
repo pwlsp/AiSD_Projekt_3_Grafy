@@ -7,4 +7,4 @@ void generate_matrix(int **matrix, int vertices);
 
 void generate_list(graph *L, int vertices);
 
-void generate_table(edgeList *eList, int egdes, int vertices);
+void generate_table(edgeList *eList, int vertices);

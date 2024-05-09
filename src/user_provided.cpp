@@ -4,6 +4,7 @@
 #include <sstream>
 #include <ios>
 #include <limits>
+#include <vector>
 
 #include "../include/struct_graph.h"
 #include "../include/struct_edgeList.h"
@@ -28,8 +29,9 @@ void user_provided_list(graph *L, int vertices){
     }
 }
 
-void user_provided_table(edgeList *eList, int edges){
+void user_provided_table(edgeList *eList, int edges){ //int &vertices){
     for(int i = 0; i < edges; i++){
         std::cin >> eList[i].out >> eList[i].in;
+
     }
 }

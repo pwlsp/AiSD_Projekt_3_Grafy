@@ -51,13 +51,17 @@ int main(int argc, char *argv[]){
         actions_list(L, vertices);
     }
     else if(type == "table"){
+        edgeList *eList; eList = new edgeList[edges];
         std::cin >> vertices;
         std::cout << "vertices> " << vertices << "\n";
         std::cin >> edges;
         std::cout << "edges> " << edges << "\n";
-        edgeList *eList; eList = new edgeList[edges];
-        if(create == "--generate") generate_table(eList, edges, vertices);
-        if(create == "--user-provided") user_provided_table(eList, edges);
+        if(create == "--generate"){
+            generate_table(eList, vertices);
+        }
+        if(create == "--user-provided"){
+            user_provided_table(eList, edges);
+        }
         actions_table(eList, edges, vertices);
     }
     else{

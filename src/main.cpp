@@ -33,9 +33,7 @@ int main(int argc, char *argv[])
     std::string type;
     std::cin >> type;
     std::cout << "type> " << type << "\n";
-
-    int vertices, edges;
-
+    int vertices = 0, edges = 0;
     if (type == "matrix")
     {
         std::cin >> vertices;
@@ -47,6 +45,14 @@ int main(int argc, char *argv[])
         if (create == "--generate"){
             double saturation;
             std::cin >> saturation;
+            if(saturation > 100 || saturation < 0){
+                std::cout << "The value of saturation must be within the range 0-100\nExiting the program...\n";
+                for(int i = 0; i < vertices; i++){
+                    delete[] matrix[i];
+                }
+                delete[] matrix;
+                exit(0);
+            }
             std::cout << "saturation> " << saturation << "\n";
 
             int maximum = ((vertices * vertices) - vertices) / 2;
@@ -79,6 +85,7 @@ int main(int argc, char *argv[])
         if (create == "--user-provided")
             user_provided_list(L, vertices);
         actions_list(L, vertices);
+        delete[] L;
     }
     else if (type == "table")
     {
@@ -110,6 +117,7 @@ int main(int argc, char *argv[])
             user_provided_table(eList, edges);
         }
         actions_table(eList, edges, vertices);
+        delete[] eList;
     }
     else
     {
@@ -118,18 +126,3 @@ int main(int argc, char *argv[])
     }
     return 0;
 }
-// ebe
-// ebe
-// ebe
-// ebe
-// ebe
-// ebe
-// ebe
-// ebe
-// ebe
-// ebe
-// ebe
-// ebe
-// ebe
-// ebe
-// ebe

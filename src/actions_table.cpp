@@ -18,6 +18,7 @@ void actions_table(edgeList *eList, int edges, int vertices){
         if(action == "Help") std::cout << message;
         else if(action == "Print"){
             print_graph_table(eList, edges);
+            //std::cout << "ok\n";
             std::cout << "The graph has been printed successfully.\n";
         }
         else if(action == "Find"){

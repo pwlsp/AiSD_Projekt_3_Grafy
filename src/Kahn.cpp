@@ -32,8 +32,9 @@ void Kahn_matrix(int **matrix, int vertices){
         }
         std::cout << a << " ";
         for(int j = 0; j < vertices; j++){
-            if(matrix_copy[a][j]){
+            if(matrix_copy[a][j] == 1){
                 matrix_copy[a][j] = 0;
+                matrix_copy[j][a] = 0;
                 ins[j]--;
                 ins_count--;
             }

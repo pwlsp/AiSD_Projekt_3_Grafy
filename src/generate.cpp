@@ -141,6 +141,7 @@ void generate_matrix(int **matrix, int vertices)
     int edges_sat = maximum * saturation / 100;
     std::cout << "maximum: " << maximum << "\n";
     std::cout << "edges_sat: " << edges_sat << "\n";
+    std::vector<std::vector<int>> edge_list;
 
     std::vector<int> order(vertices);
     // Fill vector with numbers from 0 to vertices-1
@@ -158,12 +159,16 @@ void generate_matrix(int **matrix, int vertices)
     for (int i = 0; i < vertices; i++)
         visited[i] = 0;
 
-    // NA POCZĄTEK WYPEŁNIAMY ZERAMI MACIERZ
+    // NA POCZĄTEK WYPEŁNIAMY ZERAMI MACIERZ I DODAJEMY WSZYSTKIE MOŻLIWE KRAWĘDZIE DO edge_list
     for (int i = 0; i < vertices; i++)
     {
-        for (int j = 0; i < vertices; i++)
+        for (int j = 0; j < vertices; j++)
         {
             matrix[i][j] = 0;
+            if (i != j){
+                std::vector edge({i, j});
+                edge_list.push_back(edge);
+            }
         }
     }
 
@@ -176,19 +181,27 @@ void generate_matrix(int **matrix, int vertices)
     std::cout << "\n";
 
     int next;
-    std::vector<edgeList> edge_list((vertices*vertices)-vertices);
+
+
     for(int i = 0; i < vertices-1; i++){
         next = generate_random_number(i+1, vertices-1);
         std::cout << order[i] << " > " << order[next] << "\n";
 
         matrix[order[i]][order[next]] = 1;
         matrix[order[next]][order[i]] = -1;
+
+        std::vector edge_i({order[i], order[next]});
+        edge_list.erase(std::remove(edge_list.begin(), edge_list.end(), edge_i), edge_list.end());
     }
 
     // UZUPEŁNIANIE MACIERZY AŻ BĘDZIE
-    int edges = vertices - 1;
-    while(edges < edges_sat){
-        for 
+    // int edges = vertices - 1;
+    // while(edges < edges_sat){
+    //     // for 
+    // }
+
+    for(int i = 0; i < (vertices*vertices-vertices); i++){
+        std::cout << edge_list[i][0] << " " << edge_list[i][1] << "\n";
     }
 }
 

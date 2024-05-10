@@ -11,5 +11,8 @@ bool find_edge_list(graph *L, int vertices, int from, int to){
 }
 
 bool find_edge_table(edgeList *eList, int edges,  int from, int to){
-    return true;
+    for(int i = 0; i < edges; i++){
+        if(eList[i].out == from && eList[i].in == to) return true;
+    }
+    return false;
 }

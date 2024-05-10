@@ -52,14 +52,21 @@ void user_provided_list(graph *L, int vertices)
         {
             for (int j = 0; j < line.size(); j++)
             {
-                if (!(line[j] >= '0' && line[j] <= '9' || line[j]))
+                // std::cout<<"\""<<line[j]<<"\"\n";
+                if (!((line[j] >= '0' && line[j] <= '9') || line[j] == ' '))
                 {
+                    
                     std::cout << "Wrong type of data.\nExiting the program...\n";
                     exit(0);
                 }
             }
-            while (is >> to)
+            while (is >> to){
+                if(to >= vertices){
+                    std::cout << "Given vertex \"" << to << "\" is out of range.\nExiting the program...\n";
+                    exit(0);
+                }
                 L[i].next.push_back(to);
+            }
         }
     }
 }
@@ -72,6 +79,7 @@ void user_provided_table(edgeList *eList, int edges, int vertices)
         std::cin >> eList[i].out >> eList[i].in;
         if (i != 0)
         {
+            //std::cout << eList[i].out << eList[i].in << "\n";
             if (prevL > eList[i].out || (prevL == eList[i].out && prevR > eList[i].in))
             {
                 std::cout << "The list of edges must be sorted.\nExiting the program...\n";

@@ -22,8 +22,10 @@ void Kahn_matrix(int **matrix, int vertices){
         }
     }
 
-    int a;
+    int a, check = 1;
     while(ins_count > 0){
+        for(int b = 0; b < vertices; b++) if(ins[b] == 0) check = 0;
+        if(check == 1) {std::cout << "The graph is cyclic, can't be sorted.\n"; return;}
         for(int i = 0; i < vertices; i++){
             if(!visited[i] && ins[i] == 0){
                 a = i;
@@ -45,6 +47,7 @@ void Kahn_matrix(int **matrix, int vertices){
         if(visited[i] == 0) std::cout << i << " ";
     }
     std::cout << "\n";
+    std::cout << "The graph has been sorted successfully (Kahn algorithm).\n";
 }
 
 void Kahn_list(graph *L, int vertices){
@@ -64,8 +67,10 @@ void Kahn_list(graph *L, int vertices){
         }
     }
 
-    int a, j;
+    int a, j, check = 1;
     while(ins_count > 0){
+        for(int b = 0; b < vertices; b++) if(ins[b] == 0) check = 0;
+        if(check == 1) {std::cout << "The graph is cyclic, can't be sorted.\n"; return;}
         for(int i = 0; i < vertices; i++){
             if(!visited[i] && ins[i] == 0){
                 a = i;
@@ -86,6 +91,7 @@ void Kahn_list(graph *L, int vertices){
         if(visited[i] == 0) std::cout << i << " ";
     }
     std::cout << "\n";
+    std::cout << "The graph has been sorted successfully (Kahn algorithm).\n";
 }
 
 void Kahn_table(edgeList *eList, int edges, int vertices){
@@ -100,8 +106,10 @@ void Kahn_table(edgeList *eList, int edges, int vertices){
         ins[eList[i].in]++;
     }
 
-    int a, ins_count = edges;
+    int a, ins_count = edges, check = 1;
     while(ins_count > 0){
+        for(int b = 0; b < vertices; b++) if(ins[b] == 0) check = 0;
+        if(check == 1) {std::cout << "The graph is cyclic, can't be sorted.\n"; return;}
         for(int i = 0; i < vertices; i++){
             if(!visited[i] && ins[i] == 0){
                 a = i;
@@ -122,5 +130,5 @@ void Kahn_table(edgeList *eList, int edges, int vertices){
         if(visited[i] == 0) std::cout << i << " ";
     }
     std::cout << "\n";
-    
+    std::cout << "The graph has been sorted successfully (Kahn algorithm).\n";
 }

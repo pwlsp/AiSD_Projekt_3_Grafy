@@ -42,7 +42,6 @@ void actions_matrix(int **matrix, int vertices){
             //z założenia są acykliczne i skierowane
             if(sort_method == "Kahn"){
                 Kahn_matrix(matrix, vertices);
-                std::cout << "The graph has been sorted successfully (Kahn algorithm).\n";
             }
             else if(sort_method == "Tarjan"){
                 Tarjan_matrix(matrix, vertices);

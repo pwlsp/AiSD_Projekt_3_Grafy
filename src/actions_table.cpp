@@ -63,7 +63,6 @@ void actions_table(edgeList *eList, int edges, int vertices)
             if (sort_method == "Kahn")
             {
                 Kahn_table(eList, edges, vertices);
-                std::cout << "The graph has been sorted successfully (Kahn algorithm).\n";
             }
             else if (sort_method == "Tarjan")
             {

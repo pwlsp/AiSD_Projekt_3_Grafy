@@ -68,7 +68,6 @@ void actions_table(edgeList *eList, int edges, int vertices)
             else if (sort_method == "Tarjan")
             {
                 Tarjan_table(eList, edges, vertices);
-                std::cout << "The graph has been sorted successfully (Tarjan algorithm).\n";
             }
             else
             {

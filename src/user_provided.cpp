@@ -2,7 +2,7 @@
 #include <string>
 #include <list>
 #include <sstream>
-#include <ios>
+#include <ios> 
 #include <limits>
 #include <vector>
 
@@ -35,7 +35,6 @@ void user_provided_matrix(int **matrix, int vertices)
             matrix[i][j] = to;
             j++;
         }
-        std::cout << "\n";
     }
 }
 

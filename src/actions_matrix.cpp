@@ -46,7 +46,6 @@ void actions_matrix(int **matrix, int vertices){
             }
             else if(sort_method == "Tarjan"){
                 Tarjan_matrix(matrix, vertices);
-                std::cout << "The graph has been sorted successfully (Tarjan algorithm).\n";
             }
             else{
                 std::cout << "Unknown topological sorting method\n"; 

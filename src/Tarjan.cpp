@@ -10,6 +10,10 @@ void Tarjan_go_matrix(int **matrix, int vertices, int *color, std::stack<int> &S
     color[Vertex] = 1;
     for (int i = 0; i < vertices; i++)
     {
+        if(color[i] == 1 && matrix[Vertex][i] == 1){
+            std::cout << "Given graph has a cycle.\nExiting the program...\n";
+            exit(0);
+        }
         if (matrix[Vertex][i] == 1 && (!color[i]) && color[Vertex] == 1)
         {
             Tarjan_go_matrix(matrix, vertices, color, Stack, i, ins);
@@ -103,6 +107,7 @@ void Tarjan_matrix(int **matrix, int vertices)
         }
         std::cout << "\n";
     }
+    std::cout << "The graph has been sorted successfully (Tarjan algorithm).\n";
 }
 
 void Tarjan_list(graph *L, int vertices)
@@ -158,6 +163,7 @@ void Tarjan_list(graph *L, int vertices)
         }
         std::cout << "\n";
     }
+    std::cout << "The graph has been sorted successfully (Tarjan algorithm).\n";
 }
 
 void Tarjan_table(edgeList *eList, int edges, int vertices)
@@ -210,4 +216,6 @@ void Tarjan_table(edgeList *eList, int edges, int vertices)
         }
         std::cout << "\n";
     }
+
+    std::cout << "The graph has been sorted successfully (Tarjan algorithm).\n";
 }

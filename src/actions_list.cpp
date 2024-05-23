@@ -45,7 +45,6 @@ void actions_list(graph *L, int vertices){
             //z założenia są acykliczne i skierowane
             if(sort_method == "Kahn"){
                 Kahn_list(L, vertices);
-                std::cout << "The graph has been sorted successfully (Kahn algorithm).\n";
             }
             else if(sort_method == "Tarjan"){
                 Tarjan_list(L, vertices);

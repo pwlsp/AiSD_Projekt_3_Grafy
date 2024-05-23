@@ -20,9 +20,9 @@ int generate_random_number(int x, int y)
 
 void generate_matrix(int **matrix, int vertices, int maximum, int edges_sat)
 {
-    std::cout << "\n-----------GRAPH GENERATION----------\n\n";
-    std::cout << "100\% of edges: " << maximum << "\n";
-    std::cout << "Number of edges that can be added with given saturation: " << edges_sat << "\n";
+    // std::cout << "\n-----------GRAPH GENERATION----------\n\n";
+    // std::cout << "100\% of edges: " << maximum << "\n";
+    // std::cout << "Number of edges that can be added with given saturation: " << edges_sat << "\n";
     std::vector<std::vector<int>> edge_list;
 
     // TWORZENIE VECTORA order
@@ -57,25 +57,25 @@ void generate_matrix(int **matrix, int vertices, int maximum, int edges_sat)
     }
 
     // WYPISANIE ORDERA
-    std::cout << "Topological order of graph's nodes: ";
-    for (int i = 0; i < vertices; i++)
-    {
-        std::cout << order[i] << " ";
-    }
+    // std::cout << "Topological order of graph's nodes: ";
+    // for (int i = 0; i < vertices; i++)
+    // {
+    //     std::cout << order[i] << " ";
+    // }
 
-    std::cout << "\n\nThe list of edges that can be added to the DAG:\n";
-    for (int i = 0; i < edge_list.size(); i++)
-    {
-        std::cout << edge_list[i][0] << " " << edge_list[i][1] << "\n";
-    }
+    // std::cout << "\n\nThe list of edges that can be added to the DAG:\n";
+    // for (int i = 0; i < edge_list.size(); i++)
+    // {
+    //     std::cout << edge_list[i][0] << " " << edge_list[i][1] << "\n";
+    // }
 
-    std::cout << "\nAdding the minimum number of edges so that the graph is connected:\n";
+    // std::cout << "\nAdding the minimum number of edges so that the graph is connected:\n";
     int next;
 
     for (int i = 0; i < vertices - 1; i++)
     {
         next = generate_random_number(i + 1, vertices - 1);
-        std::cout << order[i] << " -> " << order[next] << "\n";
+        //std::cout << order[i] << " -> " << order[next] << "\n";
 
         matrix[order[i]][order[next]] = 1;
         matrix[order[next]][order[i]] = -1;
@@ -84,11 +84,11 @@ void generate_matrix(int **matrix, int vertices, int maximum, int edges_sat)
         edge_list.erase(std::remove(edge_list.begin(), edge_list.end(), edge_i), edge_list.end());
     }
 
-    std::cout << "\nList of the remaining edges that will be randomly selected:\n";
-    for (int i = 0; i < edge_list.size(); i++)
-    {
-        std::cout << edge_list[i][0] << " " << edge_list[i][1] << "\n";
-    }
+    // std::cout << "\nList of the remaining edges that will be randomly selected:\n";
+    // for (int i = 0; i < edge_list.size(); i++)
+    // {
+    //     std::cout << edge_list[i][0] << " " << edge_list[i][1] << "\n";
+    // }
 
     // print_graph_matrix(matrix, vertices);
 
@@ -119,7 +119,7 @@ void generate_matrix(int **matrix, int vertices, int maximum, int edges_sat)
         // std::cout<<std::endl;
     }
 
-    std::cout << "\n-----------GRAPH GENERATION COMPLETE----------\n\n";
+    //std::cout << "\n-----------GRAPH GENERATION COMPLETE----------\n\n";
 }
 
 void generate_list(graph *L, int vertices, int maximum, int edges_sat)
